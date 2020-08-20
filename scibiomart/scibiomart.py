@@ -16,23 +16,11 @@
 ###############################################################################
 
 """
-This package is based on the pybiomart package however slimmed down & with added parsing functionality.
+This package is similar to pybiomart.
 
 Api reference:
 https://m.ensembl.org/info/data/biomart/biomart_restful.html#wget
 
-wget -O result.txt 'http://www.ensembl.org/biomart/martservice?query=
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Query>
-<Query  virtualSchemaName = "default" formatter = "TSV" header = "0" uniqueRows = "0" count = "" datasetConfigVersion = "0.6" >
-<Dataset name = "hsapiens_gene_ensembl" interface = "default" >
-<Filter name = "ensembl_gene_id" value = "ENSG00000139618,ENSG00000091483"/>
-<Attribute name = "ensembl_gene_id" />
-<Attribute name = "ensembl_transcript_id" />
-<Attribute name = "hgnc_symbol" />
-<Attribute name = "uniprotswissprot" />
-</Dataset>
-</Query>'
 """
 
 import urllib3
@@ -189,6 +177,7 @@ class SciBiomart:
         if dataset_attributes:
             dataset_attributes = dataset_attributes.decode("utf-8").split('\n')
             rows = []
+            # Made this up so use with caution.
             header = ['name', 'description', 'values', 'text_filters', 'qualifiers', 'label', 'id']
             for line in dataset_attributes:
                 line = line.strip().split('\t')
@@ -217,7 +206,6 @@ class SciBiomart:
             dataset_configs = xmltodict.parse(dataset_configs.decode("utf-8"))
             try:
                 listed_configs = dataset_configs['DatasetConfig']
-
                 if print_values:
                     self.u.dp(['Dataset: ', listed_configs['@dataset']])
                     for ds_attr in listed_configs:
@@ -244,8 +232,7 @@ class SciBiomart:
         if dataset_filters:
             dataset_filters = dataset_filters.decode("utf-8").split('\n')
             rows = []
-            # germ_line_variation_source	limit to genes with germline variant data sources	[dbSNP]
-            # filters	list	=	fcatus_gene_ensembl__mart_transcript_variation__dm	name_2021
+            # Made this up so use with caution.
             header = ['name', 'description', 'values', 'unknown', 'text_filters',
                       'data_type', 'qualifiers', 'label', 'id']
             for line in dataset_filters:
