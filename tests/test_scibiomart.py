@@ -24,7 +24,7 @@ from scibiomart import SciBiomart
 from scibiomart.errors import *
 
 
-class TestExample(unittest.TestCase):
+class TestScibiomart(unittest.TestCase):
 
     def setUp(self):
         # Flag to set data to be local so we don't have to download them repeatedly. ToDo: Remove when publishing.
@@ -41,6 +41,7 @@ class TestExample(unittest.TestCase):
 
     def tearDown(self):
         shutil.rmtree(self.tmp_dir)
+        self.sb.close_session()
 
     def test_list_marts(self):
         sb = SciBiomart()
@@ -60,8 +61,8 @@ class TestExample(unittest.TestCase):
         # Now check we had all of them
         print(found_marts)
         print(count_marts, len(expected_marts))
-
         assert count_marts == len(expected_marts)
+        self.sb = sb
 
     def test_list_datasets(self):
         sb = SciBiomart()
@@ -79,6 +80,7 @@ class TestExample(unittest.TestCase):
 
         assert len(found_datasets) == len(check_datasets_exist)
         assert len(datasets) == 203
+        self.sb = sb
 
     def test_list_attributes(self):
         sb = SciBiomart()
@@ -91,6 +93,7 @@ class TestExample(unittest.TestCase):
         df = sb.list_attributes(False)
         assert len(df['name'] == 'chromosome_name') > 0
         assert 'name_1059' in df[df['name'] == 'chromosome_name']['id'].values
+        self.sb = sb
 
     def test_list_configs(self):
         sb = SciBiomart()
@@ -109,6 +112,7 @@ class TestExample(unittest.TestCase):
         print(len(configs))
         assert len(found_configs) == len(check_configs_exist)
         assert len(configs) == 23
+        self.sb = sb
 
     def test_list_filters(self):
         sb = SciBiomart()
@@ -121,6 +125,7 @@ class TestExample(unittest.TestCase):
         filters_df = sb.list_filters(False)
         assert filters_df['name'].values[0] == 'chromosome_name'
         assert filters_df['id'].values[3] == 'seq_region_strand_1020'
+        self.sb = sb
 
     def test_run_query(self):
         sb = SciBiomart()
@@ -136,3 +141,16 @@ class TestExample(unittest.TestCase):
         assert 'ENSG00000091483' in results['ensembl_gene_id'].values
         assert 'ENSG00000091422' not in results['ensembl_gene_id'].values
         assert 'P07954' in results['uniprotswissprot'].values
+        self.sb = sb
+
+    def test_set_dataset(self):
+        sb = SciBiomart()
+        err = sb.list_configs()
+        assert err['err'] == MART_SET_ERR
+        sb.set_mart('ENSEMBL_MART_ENSEMBL')
+        err = sb.list_configs()
+        assert err['err'] == DATASET_SET_ERR
+        sb.set_dataset('hsapiens_gene_ensembl')
+        assert sb.dataset_version == 'hsapiens_gene_ensembl-GRCh38.p13'
+        self.sb = sb
+

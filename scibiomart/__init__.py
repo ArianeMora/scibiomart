@@ -24,4 +24,5 @@ __author_email__ = 'ariane.n.mora@gmail.com'
 __license__ = 'GPL3'
 
 from scibiomart.scibiomart import SciBiomart
+from scibiomart.api import SciBiomartApi
 

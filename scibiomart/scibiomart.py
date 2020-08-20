@@ -24,7 +24,6 @@ https://m.ensembl.org/info/data/biomart/biomart_restful.html#wget
 """
 
 import urllib3
-import time
 import xmltodict
 import pandas as pd
 
@@ -37,21 +36,6 @@ class SciBiomartException(SciException):
         Exception.__init__(self, message)
 
 
-def query_biomart(url):
-    max_attempts = 80
-    attempts = 0
-    sleeptime = 10  # seconds
-    http = urllib3.PoolManager()
-    print(url)
-    while attempts < max_attempts:
-        try:
-            response = http.request('GET', url)
-            return response.data
-        except:
-            print("E")
-        time.sleep(sleeptime)
-
-
 class SciBiomart:
 
     def __init__(self, url=None):
@@ -60,6 +44,16 @@ class SciBiomart:
         self.url = url or 'http://www.ensembl.org/biomart/'
         self.url = self.url if self.url[-1] == '/' else f'{self.url}/'
         self.u = SciUtil()
+        self.dataset_version = ''
+        self.session = urllib3.PoolManager()
+
+    def query_biomart(self, query):
+        try:
+            response = self.session.request('GET', query)
+            return response.data
+        except Exception as e:
+            self.u.err_p(['query_biomart: Error running biomart query: ', query])
+            raise SciBiomartException(str(e))
 
     def set_mart(self, mart: str):
         if self.mart:
@@ -68,8 +62,13 @@ class SciBiomart:
 
     def set_dataset(self, dataset: str):
         if self.dataset:
-            self.u.dp([f'Overriding current dataset: {self.dataset} with new mart: {dataset}'])
+            self.u.dp([f'Overriding current dataset: {self.dataset} with new dataset: {dataset}'])
         self.dataset = dataset
+        # Here we do a cheeky and even though people don't ask for it, we're going to go and add the dataset
+        # version to the label of the dataset (this way people can trace it back)
+        dataset_configs = self.list_configs(False)
+        if dataset_configs['@version']:
+            self.dataset_version = f'{dataset}-{dataset_configs["@version"]}'
 
     def add_filters(self, filter_dict: dict) -> str:
         filter_str = ''
@@ -102,7 +101,7 @@ class SciBiomart:
         err = self.check_dataset()
         if err:
             return err
-        results = query_biomart(self.build_query(filter_dict, attr_list))
+        results = self.query_biomart(self.build_query(filter_dict, attr_list))
 
         if results:
             datasets = results.decode("utf-8").split('\n')
@@ -120,7 +119,7 @@ class SciBiomart:
         """
         Prints out a list of available marts.
         """
-        marts = query_biomart(f'{self.url}biomart/martservice?type=registry')
+        marts = self.query_biomart(f'{self.url}martservice?type=registry')
         # Marts is returned as a tsv so just print each line
         if marts:
             marts_dict = xmltodict.parse(marts.decode("utf-8"))
@@ -144,7 +143,7 @@ class SciBiomart:
         err = self.check_mart()
         if err:
             return err
-        datasets = query_biomart(f'{self.url}biomart/martservice?type=datasets&mart={self.mart}')
+        datasets = self.query_biomart(f'{self.url}martservice?type=datasets&mart={self.mart}')
         # Marts is returned as a tsv so just print each line
         if datasets:
             datasets = datasets.decode("utf-8")
@@ -171,7 +170,7 @@ class SciBiomart:
         err = self.check_dataset()
         if err:
             return err
-        dataset_attributes = query_biomart(f'{self.url}biomart/martservice?type=attributes&dataset='
+        dataset_attributes = self.query_biomart(f'{self.url}martservice?type=attributes&dataset='
                                            f'{self.dataset}&mart={self.mart}')
         # Marts is returned as a tsv so just print each line
         if dataset_attributes:
@@ -199,7 +198,7 @@ class SciBiomart:
         err = self.check_dataset()
         if err:
             return err
-        dataset_configs = query_biomart(f'{self.url}biomart/martservice?type=configuration&dataset'
+        dataset_configs = self.query_biomart(f'{self.url}martservice?type=configuration&dataset'
                                         f'={self.dataset}&mart={self.mart}')
         # Marts is returned as a tsv so just print each line
         if dataset_configs:
@@ -226,7 +225,7 @@ class SciBiomart:
         err = self.check_dataset()
         if err:
             return err
-        dataset_filters = query_biomart(f'{self.url}biomart/martservice?type=filters&dataset'
+        dataset_filters = self.query_biomart(f'{self.url}martservice?type=filters&dataset'
                                         f'={self.dataset}&mart={self.mart}')
         # Marts is returned as a tsv so just print each line
         if dataset_filters:
@@ -256,3 +255,7 @@ class SciBiomart:
             err_msg = DATASET_SET_ERR
             self.u.warn_p([err_msg])
             return {'err': err_msg}
+
+    def close_session(self):
+        """ Terminate any connections that are hanging. """
+        self.session.clear()
