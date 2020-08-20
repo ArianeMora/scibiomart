@@ -21,7 +21,6 @@ import tempfile
 import unittest
 
 from scibiomart import SciBiomart, SciBiomartApi
-from scibiomart.errors import *
 
 
 class TestApi(unittest.TestCase):
@@ -56,4 +55,19 @@ class TestApi(unittest.TestCase):
         results_df = sb.get_mouse_default({'ensembl_gene_id': 'ENSMUSG00000029844,ENSMUSG00000032446'})
         print(results_df.head())
         assert results_df['end_position'][0] == 52158317
+        self.sb = sb
+
+    def test_sort_df_on_starts(self):
+        sb = SciBiomartApi()
+        results_df = sb.get_mouse_default({'ensembl_gene_id': 'ENSMUSG00000029844,ENSMUSG00000032446,'
+                                                              'ENSMUSG00000020875,ENSMUSG00000038210'})
+        print(results_df.values)
+
+        # Now let's sort it
+        results_df = sb.sort_df_on_starts(results_df)
+        assert results_df.values[0][1] == 'Hoxa1'
+        assert results_df.values[1][1] == 'Hoxa11'
+        assert results_df.values[2][1] == 'Eomes'
+        assert results_df.values[3][1] == 'Hoxb9'
+
         self.sb = sb

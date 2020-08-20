@@ -15,13 +15,7 @@
 #                                                                             #
 ###############################################################################
 
-import os
-import shutil
-import tempfile
-import unittest
-
 from scibiomart import SciBiomart
-from scibiomart.errors import *
 
 
 class SciBiomartApi(SciBiomart):
@@ -30,27 +24,63 @@ class SciBiomartApi(SciBiomart):
         super().__init__()
 
     def get_human_default(self, filter_dict=None, attr_list=None, dataset=None, mart=None):
+        """ Run a default human query that gets location information and gene names for Ensembl IDs """
         mart = mart or 'ENSEMBL_MART_ENSEMBL'
         dataset = dataset or 'hsapiens_gene_ensembl'
         self.set_mart(mart)
         self.set_dataset(dataset)
-        filter_dict = filter_dict or {}
-        attr_list = attr_list or []
-        attr_list = ['ensembl_gene_id', 'external_gene_name', 'chromosome_name', 'start_position',
-                     'end_position', 'strand'] + attr_list
-        # Here we just run the query
-        results_df = self.run_query(filter_dict, attr_list)
-        return results_df
+        return self.run_default(filter_dict, attr_list)
 
     def get_mouse_default(self, filter_dict=None, attr_list=None, dataset=None, mart=None):
+        """ Run a default mouse query that gets location information and gene names for Ensembl IDs """
         mart = mart or 'ENSEMBL_MART_ENSEMBL'
         dataset = dataset or 'mmusculus_gene_ensembl'
         self.set_mart(mart)
         self.set_dataset(dataset)
+        return self.run_default(filter_dict, attr_list)
+
+    def run_default(self, filter_dict=None, attr_list=None):
+        """ Run the queries once the datasets have been assigned """
         filter_dict = filter_dict or {}
         attr_list = attr_list or []
         attr_list = ['ensembl_gene_id', 'external_gene_name', 'chromosome_name', 'start_position',
                      'end_position', 'strand'] + attr_list
         # Here we just run the query
         results_df = self.run_query(filter_dict, attr_list)
+        # Remove any NA ensembl IDs
+        results_df = results_df[~results_df['external_gene_name'].isnull()]
+        convert_dict = {'start_position': int,
+                        'end_position': int,
+                        'strand': int,
+                        'chromosome_name': int}
+        results_df = results_df.astype(convert_dict)
         return results_df
+
+    @staticmethod
+    def sort_df_on_starts(results_df):
+        """
+        Sorts a results dataframe by chr, start, and end. This allows us to do fast matching in
+        other tools i.e. when we're looking at annotating regions to genes. (sciloc2gene)
+
+        We sort this in the same way that our peak files are sorted using samtools.
+        """
+        i = 0
+        starts = results_df['start_position'].values
+        ends = results_df['end_position'].values
+        strands = results_df['strand'].values
+        fake_starts = []
+        for strand in strands:
+            # Lets make this have a "fake" start based on the TSS
+            if strand < 0:
+                fake_starts.append(ends[i])
+            else:
+                fake_starts.append(starts[i])
+        # Again, lets use the ordering of the index keys
+        results_df['fake_starts'] = fake_starts
+        # Sort on fake starts and chr
+        sorted_df = results_df.sort_values(['chromosome_name', 'fake_starts'], ascending=[True, True])
+        # Drop our fake col
+        sorted_df = sorted_df.drop(['fake_starts'], axis=1)
+        return sorted_df
+
+

@@ -256,6 +256,9 @@ class SciBiomart:
             self.u.warn_p([err_msg])
             return {'err': err_msg}
 
+    def save_as_csv(self, df: pd.DataFrame, file_path: str):
+        self.u.save_df(df, f'{file_path}-{self.dataset_version}')
+
     def close_session(self):
         """ Terminate any connections that are hanging. """
         self.session.clear()
