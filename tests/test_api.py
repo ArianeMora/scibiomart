@@ -20,7 +20,7 @@ import shutil
 import tempfile
 import unittest
 
-from scibiomart import SciBiomart, SciBiomartApi
+from scibiomart import SciBiomartApi
 
 
 class TestApi(unittest.TestCase):
@@ -39,16 +39,19 @@ class TestApi(unittest.TestCase):
             self.tmp_dir = tempfile.mkdtemp(prefix='EXAMPLE_PROJECT_tmp_')
 
     def tearDown(self):
-        shutil.rmtree(self.tmp_dir)
+        # shutil.rmtree(self.tmp_dir)
         # Close any hanging sessions
         self.sb.close_session()
 
     def test_human_default(self):
         sb = SciBiomartApi()
-        results_df = sb.get_human_default({'ensembl_gene_id': 'ENSG00000139618,ENSG00000091483'})
+        results_df = sb.get_human_default()
+        results_df = sb.sort_df_on_starts(results_df)
+
         print(results_df.head())
+        sb.save_as_csv(results_df, f'/Users/ariane/Documents/code/hk2fh/r_projects/dmrseq/human')
         assert results_df['external_gene_name'][0] == 'FH'
-        self.sb = sb
+        sb = sb
 
     def test_mouse_default(self):
         sb = SciBiomartApi()
@@ -70,4 +73,19 @@ class TestApi(unittest.TestCase):
         assert results_df.values[2][1] == 'Eomes'
         assert results_df.values[3][1] == 'Hoxb9'
 
+        self.sb = sb
+
+    def test_get_entrez(self):
+        sb = SciBiomartApi()
+        results_df = sb.get_mouse_default({'ensembl_gene_id': 'ENSMUSG00000029844,ENSMUSG00000032446,'
+                                                              'ENSMUSG00000020875,ENSMUSG00000038210'},
+                                          attr_list=['entrezgene_id'])
+        print(results_df.values)
+
+        # Now let's sort it
+        results_df = sb.sort_df_on_starts(results_df)
+        assert results_df.values[0][6] == '15394'
+        assert results_df.values[1][6] == '15394'
+        assert results_df.values[2][1] == 'Eomes'
+        assert results_df.values[3][1] == 'Hoxb9'
         self.sb = sb

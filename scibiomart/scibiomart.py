@@ -46,6 +46,7 @@ class SciBiomart:
         self.u = SciUtil()
         self.dataset_version = ''
         self.session = urllib3.PoolManager()
+        self.df = None  # Stores the most recent dataframe.
 
     def query_biomart(self, query):
         try:
@@ -113,6 +114,7 @@ class SciBiomart:
             df = pd.DataFrame(rows)
             if len(attr_list) > 1:
                 df.columns = header
+            self.df = df
             return df
 
     def list_marts(self, print_values=True) -> dict:
@@ -158,6 +160,7 @@ class SciBiomart:
                     rows.append(line[1:])
             df = pd.DataFrame(rows)
             df.columns = header
+            self.df = df
             return df
 
     def list_attributes(self, print_values=True):
@@ -186,6 +189,7 @@ class SciBiomart:
                     rows.append(line)
             df = pd.DataFrame(rows)
             df.columns = header
+            self.df = df
             return df
 
     def list_configs(self, print_values=True):
@@ -242,6 +246,7 @@ class SciBiomart:
                     rows.append(line)
             df = pd.DataFrame(rows)
             df.columns = header
+            self.current_df = df
             return df
 
     def check_mart(self):
@@ -262,3 +267,7 @@ class SciBiomart:
     def close_session(self):
         """ Terminate any connections that are hanging. """
         self.session.clear()
+
+    def get_current_df(self):
+        """ Return the most recent query. """
+        return self.df

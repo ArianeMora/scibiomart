@@ -154,3 +154,12 @@ class TestScibiomart(unittest.TestCase):
         assert sb.dataset_version == 'hsapiens_gene_ensembl-GRCh38.p13'
         self.sb = sb
 
+    def test_match_mouse_to_human(self):
+        sb = SciBiomart()
+        sb.set_mart('ENSEMBL_MART_ENSEMBL')
+        sb.set_dataset('hsapiens_gene_ensembl')
+        attributes = ['ensembl_gene_id', 'mmusculus_homolog_ensembl_gene', 'mmusculus_homolog_perc_id_r1']
+        results = sb.run_query({'ensembl_gene_id': 'ENSG00000139618,ENSG00000091483'},
+                               attributes)
+        print(results)
+        self.sb = sb
