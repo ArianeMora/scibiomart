@@ -77,6 +77,11 @@ err = sb.list_filters()
 #### Run generic query
 Here we show a generic query for two genes (as a comma separated list) and the attributes we're interested in are
 'ensembl_gene_id', 'hgnc_symbol', 'uniprotswissprot'.
+
+Run query: `def run_query(self, filter_dict: dict, attr_list: list):`
+i.e. you can pass it a filter dictionary and a list of attributes. This will make it quicker, you can also run it and it 
+will get all genes (i.e. if filter_dict is empty).
+
 ```
 sb = SciBiomart()
 sb.set_mart('ENSEMBL_MART_ENSEMBL')
