@@ -49,7 +49,6 @@ class TestApi(unittest.TestCase):
         results_df = sb.sort_df_on_starts(results_df)
 
         print(results_df.head())
-        sb.save_as_csv(results_df, f'/Users/ariane/Documents/code/hk2fh/r_projects/dmrseq/human')
         assert results_df['external_gene_name'][0] == 'FH'
         sb = sb
 
