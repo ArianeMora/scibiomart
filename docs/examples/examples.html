@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Examples &mdash; scidat 1.0.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/custom.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84847737-2"></script>-->
+<!--    <script>-->
+<!--        window.dataLayer = window.dataLayer || [];-->
+
+<!--        function gtag() {-->
+<!--            dataLayer.push(arguments);-->
+<!--        }-->
+
+<!--        gtag('js', new Date());-->
+
+<!--        gtag('config', 'UA-84847737-2');-->
+<!--    </script>-->
+
+
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CLI" href="cli.html" />
+    <link rel="prev" title="Installing sci-loc2gene" href="../installing/index.html" />
+ 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">sci-biomart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installing/index.html">Installing sci-loc2gene</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Running sci-biomart</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples-extended">Examples extended</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#print-marts">Print marts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#print-datasets">Print datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-attributes">List attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-configs">List configs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-filters">List filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-generic-query">Run generic query</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#match-mouse-to-human">Match mouse to human</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scidat</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/arianemora/scibiomart/blob/master/docs_src/src/examples/examples.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>For the most simple usage, use API which will get the latest mouse and human and map gene IDs to gene names.</p>
+<div class="section" id="id1">
+<h3>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scibiomart</span> <span class="kn">import</span> <span class="n">SciBiomartApi</span>
+
+<span class="n">sb</span> <span class="o">=</span> <span class="n">SciBiomartApi</span><span class="p">()</span>
+
+<span class="c1"># Get only the default for those genes</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">get_mouse_default</span><span class="p">({</span><span class="s1">&#39;ensembl_gene_id&#39;</span><span class="p">:</span> <span class="s1">&#39;ENSMUSG00000029844,ENSMUSG00000032446&#39;</span><span class="p">})</span>
+
+<span class="c1"># Select attributes</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">get_mouse_default</span><span class="p">({</span><span class="s1">&#39;ensembl_gene_id&#39;</span><span class="p">:</span> <span class="s1">&#39;ENSMUSG00000020875,ENSMUSG00000038210&#39;</span><span class="p">},</span>
+                                     <span class="n">attr_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;entrezgene_id&#39;</span><span class="p">])</span>
+<span class="c1"># Get all genes</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">get_mouse_default</span><span class="p">()</span>
+
+<span class="c1"># Sort the results based on TSS (takes direction into account)</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">sort_df_on_starts</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+
+<span class="c1"># Get human</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">get_human_default</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples-extended">
+<h3>Examples extended<a class="headerlink" href="#examples-extended" title="Permalink to this headline">¶</a></h3>
+<p>If you are interested in more than the simple API, see the tests for all examples, however, you can list the datasets
+etc, and query other attributes.</p>
+<div class="section" id="print-marts">
+<h4>Print marts<a class="headerlink" href="#print-marts" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sb</span> <span class="o">=</span> <span class="n">SciBiomart</span><span class="p">()</span>
+<span class="n">marts</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">list_marts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">marts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="print-datasets">
+<h4>Print datasets<a class="headerlink" href="#print-datasets" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sb</span> <span class="o">=</span> <span class="n">SciBiomart</span><span class="p">()</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_mart</span><span class="p">(</span><span class="s1">&#39;ENSEMBL_MART_ENSEMBL&#39;</span><span class="p">)</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">list_datasets</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-attributes">
+<h4>List attributes<a class="headerlink" href="#list-attributes" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sb</span> <span class="o">=</span> <span class="n">SciBiomart</span><span class="p">()</span>  
+<span class="n">sb</span><span class="o">.</span><span class="n">set_mart</span><span class="p">(</span><span class="s1">&#39;ENSEMBL_MART_ENSEMBL&#39;</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="s1">&#39;fcatus_gene_ensembl&#39;</span><span class="p">)</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">list_attributes</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-configs">
+<h4>List configs<a class="headerlink" href="#list-configs" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sb</span> <span class="o">=</span> <span class="n">SciBiomart</span><span class="p">()</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_mart</span><span class="p">(</span><span class="s1">&#39;ENSEMBL_MART_ENSEMBL&#39;</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="s1">&#39;fcatus_gene_ensembl&#39;</span><span class="p">)</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">list_configs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-filters">
+<h4>List filters<a class="headerlink" href="#list-filters" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sb</span> <span class="o">=</span> <span class="n">SciBiomart</span><span class="p">()</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_mart</span><span class="p">(</span><span class="s1">&#39;ENSEMBL_MART_ENSEMBL&#39;</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="s1">&#39;fcatus_gene_ensembl&#39;</span><span class="p">)</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">list_filters</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-generic-query">
+<h4>Run generic query<a class="headerlink" href="#run-generic-query" title="Permalink to this headline">¶</a></h4>
+<p>Here we show a generic query for two genes (as a comma separated list) and the attributes we’re interested in are
+‘ensembl_gene_id’, ‘hgnc_symbol’, ‘uniprotswissprot’.</p>
+<p>Run query: <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">run_query(self,</span> <span class="pre">filter_dict:</span> <span class="pre">dict,</span> <span class="pre">attr_list:</span> <span class="pre">list):</span></code>
+i.e. you can pass it a filter dictionary and a list of attributes. This will make it quicker, you can also run it and it
+will get all genes (i.e. if filter_dict is empty).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sb</span> <span class="o">=</span> <span class="n">SciBiomart</span><span class="p">()</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_mart</span><span class="p">(</span><span class="s1">&#39;ENSEMBL_MART_ENSEMBL&#39;</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="s1">&#39;hsapiens_gene_ensembl&#39;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">run_query</span><span class="p">({</span><span class="s1">&#39;ensembl_gene_id&#39;</span><span class="p">:</span> <span class="s1">&#39;ENSG00000139618,ENSG00000091483&#39;</span><span class="p">},</span>
+                       <span class="p">[</span><span class="s1">&#39;ensembl_gene_id&#39;</span><span class="p">,</span> <span class="s1">&#39;hgnc_symbol&#39;</span><span class="p">,</span> <span class="s1">&#39;uniprotswissprot&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="match-mouse-to-human">
+<h4>Match mouse to human<a class="headerlink" href="#match-mouse-to-human" title="Permalink to this headline">¶</a></h4>
+<p>Get mouse orthologs for human genes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sb</span> <span class="o">=</span> <span class="n">SciBiomart</span><span class="p">()</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_mart</span><span class="p">(</span><span class="s1">&#39;ENSEMBL_MART_ENSEMBL&#39;</span><span class="p">)</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="s1">&#39;hsapiens_gene_ensembl&#39;</span><span class="p">)</span>
+<span class="n">attributes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ensembl_gene_id&#39;</span><span class="p">,</span> <span class="s1">&#39;mmusculus_homolog_ensembl_gene&#39;</span><span class="p">,</span> <span class="s1">&#39;mmusculus_homolog_perc_id_r1&#39;</span><span class="p">]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">run_query</span><span class="p">({</span><span class="s1">&#39;ensembl_gene_id&#39;</span><span class="p">:</span> <span class="s1">&#39;ENSG00000139618,ENSG00000091483&#39;</span><span class="p">},</span>  <span class="n">attributes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>See tests for more examples</strong></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cli.html" class="btn btn-neutral float-right" title="CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../installing/index.html" class="btn btn-neutral float-left" title="Installing sci-loc2gene" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Ariane Mora
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

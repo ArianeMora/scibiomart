@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sci-biomart &mdash; scidat 1.0.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/custom.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84847737-2"></script>-->
+<!--    <script>-->
+<!--        window.dataLayer = window.dataLayer || [];-->
+
+<!--        function gtag() {-->
+<!--            dataLayer.push(arguments);-->
+<!--        }-->
+
+<!--        gtag('js', new Date());-->
+
+<!--        gtag('config', 'UA-84847737-2');-->
+<!--    </script>-->
+
+
+    <link rel="author" title="About these documents" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installing sci-loc2gene" href="installing/index.html" />
+    <link rel="prev" title="sci-biomart" href="index.html" />
+ 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">sci-biomart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-sci-biomart">Running sci-biomart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extending-sci-biomart">Extending sci-biomart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#biomart-information-below">Biomart information below</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#a-querying-biomart">(a) Querying BioMart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#b-retrieving-meta-data">(b) Retrieving Meta Data:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c-example-queries">(c) Example queries:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installing/index.html">Installing sci-loc2gene</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Running sci-biomart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">scidat</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>sci-biomart</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/arianemora/scibiomart/blob/master/docs_src/src/about.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="sci-biomart">
+<h1>sci-biomart<a class="headerlink" href="#sci-biomart" title="Permalink to this headline">¶</a></h1>
+<p>This is just a simple wrapper around the API from BioMart, but I found existing packages were not quite sufficent
+for what I was wanting to do.</p>
+<p>Here you can simply get the list of all genes and perform other biomart functions such as mapping between human and
+mouse.</p>
+<p>It is available under the <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License (Version 3)</a>.</p>
+<p>Please post questions and issues related to sci-loc2gene on the <a class="reference external" href="https://github.com/ArianeMora/scibiomart/issues">Issues</a>  section of the GitHub repository.</p>
+<div class="section" id="running-sci-biomart">
+<h2>Running sci-biomart<a class="headerlink" href="#running-sci-biomart" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Install sci-biomart (<a class="reference internal" href="installing/index.html#installing"><span class="std std-ref">Installing</span></a>)</p></li>
+<li><p>View examples in (<span class="xref std std-ref">Examples</span>)</p></li>
+<li><p>Look at CLI examples in (<span class="xref std std-ref">cli</span>)</p></li>
+</ol>
+</div>
+<div class="section" id="extending-sci-biomart">
+<h2>Extending sci-biomart<a class="headerlink" href="#extending-sci-biomart" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Make a pull request on github.</p></li>
+</ol>
+</div>
+<div class="section" id="biomart-information-below">
+<h2>Biomart information below<a class="headerlink" href="#biomart-information-below" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://m.ensembl.org/biomart/martservice">Martservices usage</a></p>
+<div class="section" id="a-querying-biomart">
+<h3>(a) Querying BioMart<a class="headerlink" href="#a-querying-biomart" title="Permalink to this headline">¶</a></h3>
+<p>To submit a query using our webservices generate an XML document conforming to our Query XML syntax.
+This can be achieved simply by building up your query using MartView and hitting the XML button.
+This XML should be posted to <a class="reference external" href="http://www.ensembl.org/martservice">http://www.ensembl.org/martservice</a> attached to a single parameter of <strong>query</strong>.</p>
+<blockquote>
+<div><p>For example you could either:</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>submit using wget replacing MY_XML with the XML obtained above, first removing any new lines.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -O results.txt <span class="s1">&#39;http://www.ensembl.org/biomart/martservice?query=MY_XML&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="b-retrieving-meta-data">
+<h3>(b) Retrieving Meta Data:<a class="headerlink" href="#b-retrieving-meta-data" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>to retrieve registry information: <a class="reference external" href="http://www.ensembl.org/biomart/martservice?type=registry">http://www.ensembl.org/biomart/martservice?type=registry</a></p></li>
+<li><p>to retrieve datasets available for a mart: <a class="reference external" href="http://www.ensembl.org/biomart/martservice?type=datasets&amp;mart=ENSEMBL_MART_ENSEMBL">http://www.ensembl.org/biomart/martservice?type=datasets&amp;mart=ENSEMBL_MART_ENSEMBL</a></p></li>
+<li><p>to retrieve attributes available for a dataset: <a class="reference external" href="http://www.ensembl.org/biomart/martservice?type=attributes&amp;dataset=mpahari_gene_ensembl">http://www.ensembl.org/biomart/martservice?type=attributes&amp;dataset=mpahari_gene_ensembl</a></p></li>
+<li><p>to retrieve filters available for a dataset: <a class="reference external" href="http://www.ensembl.org/biomart/martservice?type=filters&amp;dataset=mpahari_gene_ensembl">http://www.ensembl.org/biomart/martservice?type=filters&amp;dataset=mpahari_gene_ensembl</a></p></li>
+<li><p>to retrieve configuration for a dataset: <a class="reference external" href="http://www.ensembl.org/biomart/martservice?type=configuration&amp;dataset=mpahari_gene_ensembl">http://www.ensembl.org/biomart/martservice?type=configuration&amp;dataset=mpahari_gene_ensembl</a></p></li>
+</ul>
+<p>More documentation at: [[<a class="reference external" href="http://www.biomart.org/other/user-docs.pdf">http://www.biomart.org/other/user-docs.pdf</a>]]</p>
+<p>At the time of writing this the version of biomart was 0.7.</p>
+</div>
+<div class="section" id="c-example-queries">
+<h3>(c) Example queries:<a class="headerlink" href="#c-example-queries" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://www.ensembl.org/biomart/martservice?query<span class="o">=</span>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;type<span class="o">=</span>registry&lt;/Query&gt;
+http://www.ensembl.org/biomart/martservice?query<span class="o">=</span>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;&lt;!DOCTYPE Query&gt;&lt;Query <span class="nv">virtualSchemaName</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span> <span class="nv">formatter</span> <span class="o">=</span> <span class="s2">&quot;TSV&quot;</span> <span class="nv">header</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span> <span class="nv">uniqueRows</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span> <span class="nv">count</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="nv">datasetConfigVersion</span> <span class="o">=</span> <span class="s2">&quot;0.6&quot;</span> &gt;&lt;Dataset <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;hsapiens_gene_ensembl&quot;</span> <span class="nv">interface</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span> &gt;&lt;Filter <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;ensembl_gene_id&quot;</span> <span class="nv">value</span> <span class="o">=</span> <span class="s2">&quot;ENSG00000139618,ENSG00000091483&quot;</span>/&gt;&lt;Attribute <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;ensembl_gene_id&quot;</span> /&gt;&lt;/Dataset&gt;&lt;/Query&gt;
+http://www.ensembl.org/biomart/martservice?query<span class="o">=</span>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;&lt;!DOCTYPE Query&gt;&lt;Query <span class="nv">virtualSchemaName</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span> <span class="nv">formatter</span> <span class="o">=</span> <span class="s2">&quot;TSV&quot;</span> <span class="nv">header</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span> <span class="nv">uniqueRows</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span> <span class="nv">count</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="nv">datasetConfigVersion</span> <span class="o">=</span> <span class="s2">&quot;0.6&quot;</span> &gt;&lt;Dataset <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;hsapiens_gene_ensembl&quot;</span> <span class="nv">interface</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span> &gt;&lt; Filter <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;ensembl_gene_id&quot;</span> <span class="nv">value</span> <span class="o">=</span> <span class="s2">&quot;ENSG00000139618,ENSG00000091483&quot;</span> /&gt;&lt;Attribute <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;ensembl_gene_id&quot;</span> /&gt;&lt;Attribute <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;hgnc_symbol&quot;</span> /&gt;&lt;Attribute <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;uniprotswissprot&quot;</span> /&gt;&lt;/Dataset&gt;&lt;/Query&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installing/index.html" class="btn btn-neutral float-right" title="Installing sci-loc2gene" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="sci-biomart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Ariane Mora
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

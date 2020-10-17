@@ -45,12 +45,10 @@ class TestApi(unittest.TestCase):
 
     def test_human_default(self):
         sb = SciBiomartApi()
-        results_df = sb.get_human_default()
+        results_df = sb.get_human_default({'ensembl_gene_id': 'ENSG00000091483'})
         results_df = sb.sort_df_on_starts(results_df)
-
-        print(results_df.head())
         assert results_df['external_gene_name'][0] == 'FH'
-        sb = sb
+        self.sb = sb
 
     def test_mouse_default(self):
         sb = SciBiomartApi()
@@ -62,7 +60,8 @@ class TestApi(unittest.TestCase):
     def test_sort_df_on_starts(self):
         sb = SciBiomartApi()
         results_df = sb.get_mouse_default({'ensembl_gene_id': 'ENSMUSG00000029844,ENSMUSG00000032446,'
-                                                              'ENSMUSG00000020875,ENSMUSG00000038210'})
+                                                              'ENSMUSG00000020875,ENSMUSG00000038210',
+                                           })
         print(results_df.values)
 
         # Now let's sort it
@@ -78,7 +77,7 @@ class TestApi(unittest.TestCase):
         sb = SciBiomartApi()
         results_df = sb.get_mouse_default({'ensembl_gene_id': 'ENSMUSG00000029844,ENSMUSG00000032446,'
                                                               'ENSMUSG00000020875,ENSMUSG00000038210'},
-                                          attr_list=['entrezgene_id'])
+                                          attr_list=['organism_id'])
         print(results_df.values)
 
         # Now let's sort it

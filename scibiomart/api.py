@@ -56,33 +56,5 @@ class SciBiomartApi(SciBiomart):
         results_df = results_df.astype(convert_dict)
         return results_df
 
-    @staticmethod
-    def sort_df_on_starts(results_df):
-        """
-        Sorts a results dataframe by chr, start, and end. This allows us to do fast matching in
-        other tools i.e. when we're looking at annotating regions to genes. (sciloc2gene)
-
-        We sort this in the same way that our peak files are sorted using samtools.
-        """
-
-        starts = results_df['start_position'].values
-        ends = results_df['end_position'].values
-        strands = results_df['strand'].values
-        fake_starts = []
-        i = 0
-        for strand in strands:
-            # Lets make this have a "fake" start based on the TSS
-            if strand < 0:
-                fake_starts.append(ends[i])
-            else:
-                fake_starts.append(starts[i])
-            i += 1
-        # Again, lets use the ordering of the index keys
-        results_df['fake_starts'] = fake_starts
-        # Sort on fake starts and chr
-        sorted_df = results_df.sort_values(['chromosome_name', 'fake_starts'], ascending=[True, True])
-        # Drop our fake col
-        sorted_df = sorted_df.drop(['fake_starts'], axis=1)
-        return sorted_df
 
 

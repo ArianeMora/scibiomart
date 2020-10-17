@@ -15,43 +15,32 @@
 #                                                                             #
 ###############################################################################
 
-import argparse
-import os
-import sys
+"""
+Adds annotation to a dataframe.
+"""
+import pandas as pd
 
-from scibiomart import __version__
-
-
-def print_help():
-    lines = ['Helpful information']
-    print('\n'.join(lines))
+from scibiomart import SciBiomartApi
 
 
-def main(args=None):
-    parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('something', type=str, help='a path to something')
+class Annot(SciBiomartApi):
 
-    if len(sys.argv) == 1:
-        print_help()
-        sys.exit(0)
-    elif sys.argv[1] in {'-v', '--v', '-version', '--version'}:
-        print(f'scibiomart v{__version__}')
-        sys.exit(0)
-    else:
-        print(f'scibiomart v{__version__}')
-        args = parser.parse_args(args)
+    def __init__(self):
+        super().__init__()
 
-        # Validate the input arguments.
-        if not os.path.isfile(args.something):
-            print(f'The input file cannot be found: {args.something}')
-            sys.exit(1)
-        out_dir = os.path.dirname(args.output)
-        if not os.path.isdir(out_dir):
-            os.makedirs(out_dir)
+    def annot(self, df: pd.DataFrame, merge_ids: list, annotation_df=None, keep_na=False):
+        """ Adds annotation information to a dataframe. """
+        if self.df is None and annotation_df is None:
+            self.u.err_p(['Annot error: you need to pass a dataframe or generate annotation dataframe '
+                          'using scibiomart. See get_mouse_default and get_human_default for examples.'])
+            return
 
-    # Done - no errors.
-    sys.exit(0)
-
-
-if __name__ == "__main__":
-    main()
+        # Otherwise we can continue
+        # We can do a merge on the index's (an inner merge if we don't have keep na)
+        df.set_index(merge_ids[0])
+        annotation_df.set_index(merge_ids[1])
+        if not keep_na:
+            merged_df = df.join(annotation_df, how='inner')
+            return merged_df
+        else:
+            return df.join(annotation_df, how='outer')
