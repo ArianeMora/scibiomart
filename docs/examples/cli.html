@@ -231,8 +231,12 @@ comma separated list (e.g. –a “ensembl_gene_id,mmusculus_homolog_ensembl_gen
 <div class="section" id="example">
 <h2>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>Here we show an example where we get the mouse ortholog for two ensembl IDs: ENSG00000139618,ENSG00000091483.</p>
-<p>Ensembl human gene ID to mouse ortholog:</p>
+<p>Ensembl human gene ID to mouse ortholog for only two genes:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scibiomart --m ENSEMBL_MART_ENSEMBL --d hsapiens_gene_ensembl --f <span class="s2">&quot;{\&quot;ensembl_gene_id\&quot;: \&quot;ENSG00000139618,ENSG00000091483\&quot;}&quot;</span> --a <span class="s2">&quot;ensembl_gene_id,mmusculus_homolog_ensembl_gene&quot;</span>
+</pre></div>
+</div>
+<p>Ensembl human gene ID to mouse ortholog for all genes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scibiomart --m ENSEMBL_MART_ENSEMBL --d hsapiens_gene_ensembl --a <span class="s2">&quot;ensembl_gene_id,external_gene_name,mmusculus_homolog_ensembl_gene,mmusculus_homolog_perc_id_r1&quot;</span> --o mm10_orthologs_
 </pre></div>
 </div>
 <p>Ensembl human gene ID to gene name:</p>

@@ -13,11 +13,18 @@ Example:
 --------
 Here we show an example where we get the mouse ortholog for two ensembl IDs: ENSG00000139618,ENSG00000091483.
 
-Ensembl human gene ID to mouse ortholog:
+Ensembl human gene ID to mouse ortholog for only two genes:
 
 .. code-block:: bash
 
     scibiomart --m ENSEMBL_MART_ENSEMBL --d hsapiens_gene_ensembl --f "{\"ensembl_gene_id\": \"ENSG00000139618,ENSG00000091483\"}" --a "ensembl_gene_id,mmusculus_homolog_ensembl_gene"
+
+Ensembl human gene ID to mouse ortholog for all genes:
+
+.. code-block:: bash
+
+    scibiomart --m ENSEMBL_MART_ENSEMBL --d hsapiens_gene_ensembl --a "ensembl_gene_id,external_gene_name,mmusculus_homolog_ensembl_gene,mmusculus_homolog_perc_id_r1" --o mm10_orthologs_
+
 
 Ensembl human gene ID to gene name:
 
