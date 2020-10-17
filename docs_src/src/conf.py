@@ -3,7 +3,7 @@ import sys
 from datetime import datetime
 
 sys.path.insert(0, os.path.abspath('../..'))
-from scidat import __author__, __version__, __title__, __url__
+from scibiomart import __author__, __version__, __title__, __url__
 
 # Configuration file for the Sphinx documentation builder.
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
