@@ -69,9 +69,19 @@ def run(args):
              '\nAttributes: ', attrs])
     results_df = sb.run_query(filters, attrs)
     if args.s == 't':  # Check if we need to sort the file
+        convert_dict = {'start_position': int,
+                        'end_position': int,
+                        'strand': int,
+                        'chromosome_name': str}
+        sb.u.warn_p(['Removing any genes with no gene name... Required for sorting.'])
+
+        results_df = results_df[~results_df['external_gene_name'].isnull()]
+
+        results_df = results_df.astype(convert_dict)
         results_df = sb.sort_df_on_starts(results_df)  # Note the user would have had to select the starts and ends
 
-    sb.save_as_csv(results_df, args.o)
+    saved_file = sb.save_as_csv(results_df, args.o)
+    sb.u.dp(['Saved the output to:', saved_file])
 
 
 def gen_parser():
@@ -119,7 +129,11 @@ def main(args=None):
 
 
 if __name__ == "__main__":
-    main()
+    #main()
+    main(["--m", f'ENSEMBL_MART_ENSEMBL',
+          "--d", f'hsapiens_gene_ensembl',
+          "--a", "ensembl_gene_id,external_gene_name,chromosome_name,start_position,end_position,strand",
+          "--s", "t"])
 
     # ----------- Example below -----------------------
     """
@@ -127,4 +141,7 @@ if __name__ == "__main__":
           "--d", f'hsapiens_gene_ensembl',
           "--f", '{"ensembl_gene_id": "ENSG00000139618,ENSG00000091483"}',
           "--a", "ensembl_gene_id,mmusculus_homolog_ensembl_gene"])
+              
+    scibiomart --m ENSEMBL_MART_ENSEMBL --d mmusculus_gene_ensembl --a "ensembl_gene_id,external_gene_name,chromosome_name,start_position,end_position,strand" --o mm10Sorted --s t
+
     """

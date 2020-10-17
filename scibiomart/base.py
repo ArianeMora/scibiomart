@@ -73,17 +73,19 @@ class SciBiomart:
 
     def add_filters(self, filter_dict: dict) -> str:
         filter_str = ''
-        for filter_name, filter_value in filter_dict.items():
-            # Check if it is a list, if so parse the values to strings & then add it
-            if isinstance(filter_value, list):
-                filter_value = ','.join(str(val) for val in filter_value)
-            filter_str += f'<Filter name = "{filter_name}" value = "{filter_value}" />'
+        if filter_dict:
+            for filter_name, filter_value in filter_dict.items():
+                # Check if it is a list, if so parse the values to strings & then add it
+                if isinstance(filter_value, list):
+                    filter_value = ','.join(str(val) for val in filter_value)
+                filter_str += f'<Filter name = "{filter_name}" value = "{filter_value}" />'
         return filter_str
 
     def add_attrs(self, attr_list: list) -> str:
         attr_str = ''
-        for attr_name in attr_list:
-            attr_str += f'<Attribute name = "{attr_name}" />'
+        if attr_list:
+            for attr_name in attr_list:
+                attr_str += f'<Attribute name = "{attr_name}" />'
         return attr_str
 
     def build_query(self, filter_dict: dict, attr_list: list) -> str:
@@ -262,7 +264,8 @@ class SciBiomart:
             return {'err': err_msg}
 
     def save_as_csv(self, df: pd.DataFrame, file_path: str):
-        self.u.save_df(df, f'{file_path}{self.dataset_version}')
+        self.u.save_df(df, f'{file_path}{self.dataset_version}.csv')
+        return f'{file_path}{self.dataset_version}.csv'
 
     def close_session(self):
         """ Terminate any connections that are hanging. """
