@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://arianemora.github.io/scibiomart/sitemap.xml
