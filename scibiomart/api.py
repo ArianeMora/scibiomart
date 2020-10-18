@@ -52,7 +52,7 @@ class SciBiomartApi(SciBiomart):
         convert_dict = {'start_position': int,
                         'end_position': int,
                         'strand': int,
-                        'chromosome_name': str}
+                        'chromosome_name': str}     # This is the same way that bedtools sorts data i.e. 11 is before 2
         results_df = results_df.astype(convert_dict)
         return results_df
 

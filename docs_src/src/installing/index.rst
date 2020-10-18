@@ -1,6 +1,6 @@
 .. _installing:
 
-Installing sci-loc2gene
+Installing sci-scibiomart
 =======================
 
 Note: It is strongly recommended to create a `virtual environment <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/>`_

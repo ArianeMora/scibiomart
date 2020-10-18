@@ -1,7 +1,7 @@
+# scibiomart
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4099048.svg)](https://doi.org/10.5281/zenodo.4099048)
 [![PyPI](https://img.shields.io/pypi/v/scibiomart)](https://pypi.org/project/scibiomart/)
-
-# scibiomart
 
 This is just a simple wrapper around the API from BioMart, but I found existing packages were not quite sufficent 
 for what I was wanting to do i.e. cli interface and python interface with tsv API.  

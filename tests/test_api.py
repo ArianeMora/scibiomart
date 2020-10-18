@@ -77,13 +77,14 @@ class TestApi(unittest.TestCase):
         sb = SciBiomartApi()
         results_df = sb.get_mouse_default({'ensembl_gene_id': 'ENSMUSG00000029844,ENSMUSG00000032446,'
                                                               'ENSMUSG00000020875,ENSMUSG00000038210'},
-                                          attr_list=['organism_id'])
-        print(results_df.values)
+                                          attr_list=['entrezgene_id'])
 
         # Now let's sort it
         results_df = sb.sort_df_on_starts(results_df)
-        assert results_df.values[0][6] == '15394'
+        print(results_df.values)
+        print(results_df.values[0][6])
+        assert results_df.values[0][6] == '15417'
         assert results_df.values[1][6] == '15394'
-        assert results_df.values[2][1] == 'Eomes'
-        assert results_df.values[3][1] == 'Hoxb9'
+        assert results_df.values[2][1] == 'Hoxa11'
+        assert results_df.values[3][1] == 'Eomes'
         self.sb = sb
