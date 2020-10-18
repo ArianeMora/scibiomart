@@ -1,10 +1,10 @@
 .. _installing:
 
-Installing sci-scibiomart
-=======================
+Installing sci-biomart
+======================
 
 Note: It is strongly recommended to create a `virtual environment <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/>`_
-for each version of sci-scibiomart installed.
+for each version of sci-biomart installed.
 
 .. code-block:: python
 
@@ -12,14 +12,14 @@ for each version of sci-scibiomart installed.
 
 
 
-Below are supported versions of sci-scibiomart:
+Below are supported versions of sci-biomart:
 
 
 .. list-table::
    :widths: 10 10
    :header-rows: 1
 
-   * - sci-scibiomart Release
+   * - sci-biomart Release
      - Version
    * - 1
      - 1.0.2
