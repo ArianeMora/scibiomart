@@ -46,7 +46,7 @@ setup(name='scibiomart',
               'scibiomart = scibiomart.__main__:main'
           ]
       },
-      install_requires=['pandas', 'numpy', 'sciutil'],
+      install_requires=['pandas', 'numpy', 'sciutil', 'xmltodict'],
       python_requires='>=3.6',
       data_files=[("", ["LICENSE"])]
       )
