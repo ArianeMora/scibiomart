@@ -129,11 +129,11 @@ def main(args=None):
 
 
 if __name__ == "__main__":
-    #main()
-    main(["--m", f'ENSEMBL_MART_ENSEMBL',
-          "--d", f'hsapiens_gene_ensembl',
-          "--a", "ensembl_gene_id,external_gene_name,chromosome_name,start_position,end_position,strand",
-          "--s", "t"])
+    main()
+    # main(["--m", f'ENSEMBL_MART_ENSEMBL',
+    #       "--d", f'hsapiens_gene_ensembl',
+    #       "--a", "ensembl_gene_id,external_gene_name,chromosome_name,start_position,end_position,strand",
+    #       "--s", "t"])
 
     # ----------- Example below -----------------------
     """

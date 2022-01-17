@@ -20,8 +20,8 @@ from scibiomart import SciBiomart
 
 class SciBiomartApi(SciBiomart):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, url=None):
+        super().__init__(url)
 
     def get_human_default(self, filter_dict=None, attr_list=None, dataset=None, mart=None):
         """ Run a default human query that gets location information and gene names for Ensembl IDs """
@@ -33,6 +33,8 @@ class SciBiomartApi(SciBiomart):
 
     def get_mouse_default(self, filter_dict=None, attr_list=None, dataset=None, mart=None):
         """ Run a default mouse query that gets location information and gene names for Ensembl IDs """
+        self.u.warn_p(["You may have to reorder your columns if your attribute contains both features and attributes. "
+                      "These are returned as features first, then attributes."])
         mart = mart or 'ENSEMBL_MART_ENSEMBL'
         dataset = dataset or 'mmusculus_gene_ensembl'
         self.set_mart(mart)
@@ -53,7 +55,7 @@ class SciBiomartApi(SciBiomart):
                         'end_position': int,
                         'strand': int,
                         'chromosome_name': str}     # This is the same way that bedtools sorts data i.e. 11 is before 2
-        results_df = results_df.astype(convert_dict)
+        #results_df = results_df.astype(convert_dict)
         return results_df
 
 

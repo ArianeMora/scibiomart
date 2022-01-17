@@ -291,10 +291,10 @@ class SciBiomart:
         i = 0
         for strand in strands:
             # Lets make this have a "fake" start based on the TSS
-            if strand < 0:
-                fake_starts.append(ends[i])
+            if int(strand) < 0:
+                fake_starts.append(int(ends[i]))
             else:
-                fake_starts.append(starts[i])
+                fake_starts.append(int(starts[i]))
             i += 1
         # Again, lets use the ordering of the index keys
         results_df['fake_starts'] = fake_starts

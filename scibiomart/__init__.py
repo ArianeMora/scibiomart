@@ -18,7 +18,7 @@
 __title__ = 'scibiomart'
 __description__ = ''
 __url__ = 'https://github.com/ArianeMora/scibiomart.git'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Ariane Mora'
 __author_email__ = 'ariane.n.mora@gmail.com'
 __license__ = 'GPL3'

@@ -54,7 +54,7 @@ class TestApi(unittest.TestCase):
         sb = SciBiomartApi()
         results_df = sb.get_mouse_default({'ensembl_gene_id': 'ENSMUSG00000029844,ENSMUSG00000032446'})
         print(results_df.head())
-        assert results_df['end_position'][0] == 52158317
+        assert results_df['end_position'][0] == '52135297' #'52158317' hmm recently changed for hoxa1?
         self.sb = sb
 
     def test_sort_df_on_starts(self):
@@ -66,12 +66,43 @@ class TestApi(unittest.TestCase):
 
         # Now let's sort it
         results_df = sb.sort_df_on_starts(results_df)
-        assert results_df.values[0][1] == 'Hoxa1'
-        assert results_df.values[1][1] == 'Hoxa11'
-        assert results_df.values[2][1] == 'Eomes'
-        assert results_df.values[3][1] == 'Hoxb9'
+        assert results_df.values[0][1] == 'Hoxb9' # If we use chr11 it is before chr6 'Hoxa1'
+        assert results_df.values[1][1] == 'Hoxa1'
+        assert results_df.values[2][1] == 'Hoxa11'
+        assert results_df.values[3][1] == 'Eomes'
 
         self.sb = sb
+
+    def test_hg19(self):
+        sb = SciBiomartApi() #url='http://grch37.ensembl.org/biomart/martservice/')
+        self.sb = sb
+        results_df = sb.get_human_default(attr_list=['entrezgene_id'])
+        # Now let's sort it
+        results_df = sb.sort_df_on_starts(results_df)
+        print(results_df.values)
+        sb.save_as_csv(results_df, '.')
+
+    def test_get_gene_flank(self):
+        sb = SciBiomartApi()
+        self.sb = sb
+        results_df = sb.get_mouse_default(filter_dict={'ensembl_gene_id': 'ENSMUSG00000029844,ENSMUSG00000032446,'
+                                                              'ENSMUSG00000020875,ENSMUSG00000038210',
+                                                       'upstream_flank': 100},
+                                          attr_list=['gene_flank', 'entrezgene_id'])
+        print(results_df)
+        results_df.to_csv('results_df.csv', index=False)
+
+    # def test_hg38(self):
+    #     sb = SciBiomartApi()
+    #     self.sb = sb
+    #     results_df = sb.get_human_default(filter_dict={'upstream_flank': 500},
+    #                                       attr_list=['gene_flank', 'entrezgene_id'])
+    #     # Now let's sort it
+    #     # results_df = sb.sort_df_on_starts(results_df)
+    #     #print(results_df.values)
+    #     results_df.to_csv('500_flank_results_df.csv', index=False)
+    #
+    #     sb.save_as_csv(results_df, '.')
 
     def test_get_entrez(self):
         sb = SciBiomartApi()
@@ -88,3 +119,4 @@ class TestApi(unittest.TestCase):
         assert results_df.values[2][1] == 'Hoxa11'
         assert results_df.values[3][1] == 'Eomes'
         self.sb = sb
+
